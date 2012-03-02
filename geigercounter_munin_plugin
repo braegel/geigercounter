@@ -1,0 +1,16 @@
+#!/bin/bash
+
+case $1 in
+   config)
+
+        cat << 'EOM'
+graph_title Geiger Counter
+graph_vlabel uSv_h
+uSv_h.label uSv_h
+EOM
+
+exit 0;;
+esac
+
+#path to geigercouter.rb
+head -2 /dev/ttyUSB0 | tail -1 | sed -re 's/.*CPM, (.+), uSv.*/uSv_h.value \1/g'
